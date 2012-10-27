@@ -1,0 +1,11 @@
+name: mmoInfoOxygen
+version: ${releaseVersion}.${buildNumber}
+description: Adds a {oxygen} token to the mmoInfo token list.
+author: mmoMinecraftDev
+website: http://mmo.me.uk
+main: mmo.Info.mmoInfoOxygen
+depend: [Spout,mmoCore,mmoInfo]
+permissions:
+  mmo.info.oxygen:
+    description: Allows {oxygen} to show the current players oxygen level
+    default: true
