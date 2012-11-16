@@ -1,2 +1,3 @@
 #InfoOxygen Configuration
+#Use 'bar' for the oxygen bar view or 'icon' if you would just like to see the icon and a %
 displayas: "bar"
