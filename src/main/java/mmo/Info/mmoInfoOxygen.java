@@ -97,16 +97,18 @@ public class mmoInfoOxygen extends MMOPlugin implements Listener {
 			if (player.hasPermission("mmo.info.oxygen")) {
 				if (config_displayas.equalsIgnoreCase("bar")) {				
 					final CustomWidget widget = new CustomWidget();					
-					event.setWidget(plugin, widget);										
-				} else { 
-					player.getMainScreen().getHungerBar().setVisible(false);
+					event.setWidget(plugin, widget);
+					event.setIcon("o2.png");
+				} else if (config_displayas.equalsIgnoreCase("icon")) { 
+					player.getMainScreen().getBubbleBar().setVisible(false);
 					CustomLabel label = (CustomLabel)new CustomLabel().setResize(true).setFixed(true);
-					label.setText("20/20");				
-					
+					label.setText("100%");								
 					oxygenbar.put(player, label);
 					event.setWidget(this.plugin, label);
+					event.setIcon("o2.png");
+				} else {
+					event.setCancelled(true);
 				}
-				event.setIcon("o2.png");			
 			}
 		}
 	}
@@ -115,8 +117,9 @@ public class mmoInfoOxygen extends MMOPlugin implements Listener {
 	public class CustomLabel extends GenericLabel {
 		private transient int tick = 0;
 		public void onTick() {		
-			if (tick++ % 40 == 0) {		
-				setText(String.format(getScreen().getPlayer().getRemainingAir() + "/20"));			
+			if (tick++ % 40 == 0) {
+				DecimalFormat df = new DecimalFormat("##");
+				setText((String.format(df.format(getScreen().getPlayer().getRemainingAir() / 3.0F)) + "%"));			
 			}
 		}
 	}
